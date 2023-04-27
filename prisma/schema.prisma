@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["tracing"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @unique @default(uuid())
+  name        String
+  email       String      @unique
+  password    String     
+  phone       String?
+  role        Role        @default(user)
+}
+
+enum Role {
+  user
+  admin
+}
+
+model Team {
+  id          String      @id @unique @default(uuid())
+  name        String
+  base        String
+  logo        String?
+  founded     String?
+  chasis      String
+  entryYear   Int         @map("entry_year")
+  powerUnitId String      @unique @map("power_unit_id")
+  powerUnit   PowerUnit   @relation(fields: [powerUnitId], references: [id])
+  principalId String      @unique @map("principal_id")
+  principal   Principal   @relation(fields: [principalId], references: [id])
+  drivers     Driver[]
+}
+
+model PowerUnit {
+  id          String      @id @unique @default(uuid())
+  name        String
+  team        Team?        
+}
+
+model Principal {
+  id            String          @id @unique @default(uuid())
+  name          String
+  placeOfBirth  String?         @map("place_of_birth")
+  dateOfBirth   String?         @map("date_of_birth")
+  nationality   String
+  team          Team?       
+}
+
+model Driver {
+  id            String        @id @unique @default(uuid())
+  name          String
+  placeOfBirth  String?       @map("place_of_birth")
+  dateOfBirth   String?       @map("date_of_birth")
+  nationality   String
+  teamId        String        @unique @map("team_id")
+  team          Team          @relation(fields: [teamId], references: [id])
+  carNumber     Int           @map("car_number") @unique
+}
