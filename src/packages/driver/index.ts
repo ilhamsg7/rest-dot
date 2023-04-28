@@ -17,6 +17,7 @@ export type DriverResponse = {
         chasis: string;
         entryYear: number;
     }
+    createdAt: true;
 }
 
 export type DriverRequestResponse = {
@@ -27,6 +28,7 @@ export type DriverRequestResponse = {
     nationality: string;
     carNumber: number;
     teamId: string;
+    createdAt: string;
 }
 
 export type DriverListResponse = PaginatedResponse<DriverResponse[]>;

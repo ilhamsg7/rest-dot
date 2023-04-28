@@ -6,6 +6,9 @@ CREATE TABLE `User` (
     `password` VARCHAR(191) NOT NULL,
     `phone` VARCHAR(191) NULL,
     `role` ENUM('user', 'admin') NOT NULL DEFAULT 'user',
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `User_id_key`(`id`),
     UNIQUE INDEX `User_email_key`(`email`),
@@ -23,6 +26,9 @@ CREATE TABLE `Team` (
     `entry_year` INTEGER NOT NULL,
     `power_unit_id` VARCHAR(191) NOT NULL,
     `principal_id` VARCHAR(191) NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `Team_id_key`(`id`),
     UNIQUE INDEX `Team_power_unit_id_key`(`power_unit_id`),
@@ -34,6 +40,9 @@ CREATE TABLE `Team` (
 CREATE TABLE `PowerUnit` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `PowerUnit_id_key`(`id`),
     PRIMARY KEY (`id`)
@@ -46,6 +55,9 @@ CREATE TABLE `Principal` (
     `place_of_birth` VARCHAR(191) NULL,
     `date_of_birth` VARCHAR(191) NULL,
     `nationality` VARCHAR(191) NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `Principal_id_key`(`id`),
     PRIMARY KEY (`id`)
@@ -60,6 +72,9 @@ CREATE TABLE `Driver` (
     `nationality` VARCHAR(191) NOT NULL,
     `team_id` VARCHAR(191) NOT NULL,
     `car_number` INTEGER NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
 
     UNIQUE INDEX `Driver_id_key`(`id`),
     UNIQUE INDEX `Driver_team_id_key`(`team_id`),

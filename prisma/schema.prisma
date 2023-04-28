@@ -18,6 +18,9 @@ model User {
   password    String     
   phone       String?
   role        Role        @default(user)
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  deletedAt   DateTime?   @map("deleted_at")
 }
 
 enum Role {
@@ -38,12 +41,18 @@ model Team {
   principalId String      @unique @map("principal_id")
   principal   Principal   @relation(fields: [principalId], references: [id])
   drivers     Driver[]
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  deletedAt   DateTime?   @map("deleted_at")
 }
 
 model PowerUnit {
   id          String      @id @unique @default(uuid())
   name        String
-  team        Team?        
+  team        Team? 
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  deletedAt   DateTime?   @map("deleted_at")       
 }
 
 model Principal {
@@ -52,7 +61,10 @@ model Principal {
   placeOfBirth  String?         @map("place_of_birth")
   dateOfBirth   String?         @map("date_of_birth")
   nationality   String
-  team          Team?       
+  team          Team?  
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  deletedAt   DateTime?   @map("deleted_at")     
 }
 
 model Driver {
@@ -64,4 +76,7 @@ model Driver {
   teamId        String        @unique @map("team_id")
   team          Team          @relation(fields: [teamId], references: [id])
   carNumber     Int           @map("car_number") @unique
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  deletedAt   DateTime?   @map("deleted_at")
 }
