@@ -17,7 +17,7 @@ export type DriverResponse = {
         chasis: string;
         entryYear: number;
     }
-    createdAt: true;
+    createdAt: string;
 }
 
 export type DriverRequestResponse = {

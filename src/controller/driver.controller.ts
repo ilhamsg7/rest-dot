@@ -30,8 +30,8 @@ class DriverController {
 
     async createDriver(req: Request, res: Response) {
         await wrapError(res, async () => {
-            const body = createDriverRequest.parse(req.body);
-            const response = await this.service.createDriver(body);
+            const inputData = createDriverRequest.parse(req.body);
+            const response = await this.service.createDriver(inputData);
             res.status(StatusCodes.CREATED).json(response);
         });
     }
