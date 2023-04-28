@@ -10,3 +10,5 @@ router.get("/:id", (req, res) => principalController.getPrincipalById(req, res))
 router.post("/", (req, res) => principalController.createPrincipal(req, res));
 router.put("/:id", (req, res) => principalController.updatePrincipal(req, res));
 router.put("/:id", (req, res) => principalController.deletePrincipal(req, res));
+
+export default router;
