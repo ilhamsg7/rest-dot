@@ -9,7 +9,9 @@ import { CreatePrincipalRequest, UpdatePrincipalRequest } from "../packages/prin
 
 class PrincipalService {
     async getAllPrincipal(pages: number, data: SearchRequest): Promise<PrincipalListResponse> {
-        const getAllPrincipal = await paginate<PrincipalResponse, Prisma.PrincipalFindManyArgs>(
+        const getAllPrincipal = await paginate<
+            PrincipalResponse, Prisma.PrincipalFindManyArgs
+        >(
             prisma.principal,
             {
                 select: {
@@ -18,35 +20,21 @@ class PrincipalService {
                     placeOfBirth: true,
                     dateOfBirth: true,
                     nationality: true,
-                    team: {
-                        select: {
-                            name: true,
-                        }
-                    },
                     createdAt: true,
                 },
                 where: {
-                    OR: [
-                        { name: { contains: data.search } },
-                            { team: { 
-                                OR: [
-                                    { name: { contains: data.search } },
-                                    { base: { contains: data.search } },
-                                ]
-                            } 
-                        }
-                    ]
+                    name: { contains: data.search },
                 },
                 orderBy: {
                     name: "asc"
                 }
             },
-            {page: pages}
+            { page: pages }
         );
 
         const response: PrincipalListResponse = {
             message: "All Principal in Formula 1",
-            data: getAllPrincipal.data,
+            data: Object(getAllPrincipal.data),
             meta: getAllPrincipal.meta
         }
         return response;
@@ -111,9 +99,8 @@ class PrincipalService {
     }
 
     async deletePrincipal(id: string) {
-        const deletePrincipal = await prisma.principal.update({
+        const deletePrincipal = await prisma.principal.delete({
             where: { id: id },
-            data: { deletedAt: new Date() }
         });
 
         const response: PrincipalRequestResponses = {

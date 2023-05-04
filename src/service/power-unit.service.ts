@@ -30,7 +30,7 @@ class PowerUnitService {
             );
             const response: PowerUnitListResponse = {
                 message: "All Power Unit in Formula 1",
-                data: getAllPowerUnit.data,
+                data: Object(getAllPowerUnit.data),
                 meta: getAllPowerUnit.meta
             }
             return response;

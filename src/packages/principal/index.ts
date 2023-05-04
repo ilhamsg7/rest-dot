@@ -29,5 +29,5 @@ export type PrincipalRequestResponse = {
     createdAt: string;
 }
 
-export type PrincipalListResponse = PaginatedResponse<PrincipalResponse[]>;
+export type PrincipalListResponse = PaginatedResponse<PrincipalResponse>;
 export type PrincipalRequestResponses = BaseResponse<PrincipalRequestResponse>;

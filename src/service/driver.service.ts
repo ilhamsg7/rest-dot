@@ -21,6 +21,7 @@ class DriverService {
                         dateOfBirth: true,
                         nationality: true,
                         carNumber: true,
+                        teamId: true,
                         team: {
                             select: {
                                 name: true,
@@ -33,16 +34,7 @@ class DriverService {
                         createdAt: true,
                     },
                     where: {
-                        OR: [
-                            { name: { contains: data.search } },
-                            { team: { 
-                                    OR: [
-                                        { name: { contains: data.search } },
-                                        { base: { contains: data.search } },
-                                    ]
-                                } 
-                            }
-                        ]
+                        name: { contains: data.search },
                     },
                     orderBy: {
                         name: "asc"
@@ -52,7 +44,7 @@ class DriverService {
             );
             const response: DriverListResponse = {
                 message: "All Driver in Formula 1",
-                data: getAllDriver.data,
+                data: Object(getAllDriver.data),
                 meta: getAllDriver.meta
             }
             return response;

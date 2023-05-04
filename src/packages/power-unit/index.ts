@@ -13,5 +13,5 @@ export type PowerUnitRequestResponse = {
     createdAt: string;
 }
 
-export type PowerUnitListResponse = PaginatedResponse<PowerUnitResponse[]>;
+export type PowerUnitListResponse = PaginatedResponse<PowerUnitResponse>;
 export type PowerUnitRequestResponses = BaseResponse<PowerUnitRequestResponse>;

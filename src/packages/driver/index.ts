@@ -31,5 +31,5 @@ export type DriverRequestResponse = {
     createdAt: string;
 }
 
-export type DriverListResponse = PaginatedResponse<DriverResponse[]>;
+export type DriverListResponse = PaginatedResponse<DriverResponse>;
 export type DriverRequestResponses = BaseResponse<DriverRequestResponse>;

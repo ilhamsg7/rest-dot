@@ -45,7 +45,7 @@ class TeamService {
             );
             const response: TeamListResponse = {
                 message: "All Team in Formula 1",
-                data: getAllTeam.data,
+                data: Object(getAllTeam.data),
                 meta: getAllTeam.meta
             }
             return response;
@@ -133,9 +133,8 @@ class TeamService {
     }
 
     async deleteTeam(id: string): Promise<TeamRequestResponses> {
-        const deleteTeam = await prisma.team.update({
+        const deleteTeam = await prisma.team.delete({
             where: { id: id },
-            data: { deletedAt: new Date() }
         });
 
         const response: TeamRequestResponses = {

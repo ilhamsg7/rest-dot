@@ -5,20 +5,19 @@ type PayLoad = {
     id: string;
     email: string;
     role: string;
-    status: string;
 }
 
 export default {
     accessToken: (payload: PayLoad) => 
         jwt.sign(payload, envConfig.JWT_SECRET_KEY, {
-            expiresIn: envConfig.ACCESS_TOKEN_EXPIRES,
+            expiresIn: envConfig.ACCESS_TOKEN_EXPIRED,
             algorithm: "HS256",
         }),
     
 
     refreshToken: (payload: PayLoad) => 
         jwt.sign(payload, envConfig.JWT_SECRET_KEY, {
-            expiresIn: envConfig.REFRESH_TOKEN_EXPIRES,
+            expiresIn: envConfig.REFRESH_TOKEN_EXPIRED,
             algorithm: "HS256",
         }),
     

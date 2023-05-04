@@ -6,6 +6,7 @@ import { searchRequest } from "../packages/base/search";
 import { type Request, type Response } from "express";
 import { wrapError } from "../utils/wrap";
 import { StatusCodes } from "http-status-codes";
+import { createPowerUnitRequest } from "../packages/power-unit/request";
 
 @injectable()
 class PowerUnitController {
@@ -30,7 +31,7 @@ class PowerUnitController {
 
     async createPowerUnit(req: Request, res: Response) {
         await wrapError(res, async() => {
-            const inputData = createDriverRequest.parse(req.body);
+            const inputData = createPowerUnitRequest.parse(req.body);
             const response = await this.service.createPowerUnit(inputData);
             res.status(StatusCodes.CREATED).json(response);
         });

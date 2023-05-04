@@ -33,5 +33,5 @@ export type TeamRequestResponse = {
     createdAt: string;
 }
 
-export type TeamListResponse = PaginatedResponse<TeamResponse[]>;
+export type TeamListResponse = PaginatedResponse<TeamResponse>;
 export type TeamRequestResponses = BaseResponse<TeamRequestResponse>;
