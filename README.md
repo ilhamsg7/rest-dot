@@ -1,0 +1,3 @@
+# rest-dot
+
+Dalam project ini, pattern yang saya gunakan untk proses CRUD-nya yaitu Controller, Route, Service. Penjelasan singkatnya adalah sebagai berikut, logic terkait pengambilan data seperti penggunaan ORM saya taruh pada service dan tidak di controller agar lebih menghemat baris. Controller hanya berfungsi sebagai tempat pengembalian data. Selain itu, saya juga menggunakan zod sebagai validation untuk form inputnya. Alasan saya memilih pattern seperti ini adalah berdasar project sebelumyna yang telah saya lakukan menggunakan Express dimana menurut saya pattern ini lebih cocok dibanding menuliskan keseluruhan logic pada controller
